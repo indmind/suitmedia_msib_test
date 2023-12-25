@@ -32,3 +32,16 @@ To run the app, use this command
 ```sh
 flutter run
 ```
+
+## Convention
+
+This app uses [Effective Dart](https://dart.dev/guides/language/effective-dart) as the coding convention.
+
+Some other conventions used in this app are:
+
+- Custom widgets are suffixed with `Widget`, e.g. `TextFormFieldWidget`
+- Screens are suffixed with `Screen`, e.g. `FirstScreen`
+- Models are suffixed with `Model`, e.g. `UserModel`
+- Repositories are suffixed with `Repository`, e.g. `UserRepository`
+- Application Services are suffixed with `Service`, e.g. `UserService`
+- Controllers are suffixed with `Controller`, e.g. `UserController`

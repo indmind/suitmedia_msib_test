@@ -4,3 +4,8 @@ linter:
   rules:
     prefer_relative_imports: true
     prefer_single_quotes: true
+
+analyzer:
+  plugins:
+    - custom_lint
+    
