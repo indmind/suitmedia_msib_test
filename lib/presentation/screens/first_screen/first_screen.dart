@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/unfocus_scope_widget.dart';
+import '../second_screen/second_screen.dart';
+import '../third_screen/third_screen.dart';
+
 class FirstScreen extends StatelessWidget {
   static const String route = '/first';
 
@@ -7,16 +11,55 @@ class FirstScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('First Screen'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/second');
-          },
-          child: const Text('Go to Second Screen'),
+    return UnfocusScopeWidget(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        body: DecoratedBox(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/background.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(32.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/avatar.png',
+                    width: 116,
+                    height: 116,
+                  ),
+                  const SizedBox(height: 58),
+                  TextFormField(
+                    decoration: const InputDecoration(hintText: 'Name'),
+                  ),
+                  const SizedBox(height: 22),
+                  TextFormField(
+                    decoration: const InputDecoration(hintText: 'Palindrome'),
+                  ),
+                  const SizedBox(height: 45),
+                  FilledButton(
+                    onPressed: () =>
+                        Navigator.pushNamed(context, SecondScreen.route),
+                    child: const Text('CHECK'),
+                  ),
+                  const SizedBox(height: 15),
+                  FilledButton(
+                    onPressed: () =>
+                        Navigator.pushNamed(context, ThirdScreen.route),
+                    child: const Text('NEXT'),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
