@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 ///
 /// This is the default color scheme for the app.
 const lightColorScheme = ColorScheme.light(
-  primary: Color(0xFF2B637B),
   background: Color(0xFFFFFFFF),
   onBackground: Color(0xFF04021D),
+  primary: Color(0xFF2B637B),
+  secondary: Color(0xFF534AE7),
 );

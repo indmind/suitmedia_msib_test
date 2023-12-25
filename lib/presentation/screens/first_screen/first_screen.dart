@@ -17,6 +17,7 @@ class FirstScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
+          shape: const Border(),
         ),
         body: DecoratedBox(
           decoration: const BoxDecoration(
