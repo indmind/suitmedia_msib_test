@@ -34,7 +34,7 @@ class SecondScreen extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               'John Doe',
-              style: textTheme.bodyLarge!.copyWith(
+              style: textTheme.bodyMedium!.copyWith(
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
                 height: 0.75,

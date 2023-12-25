@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'widgets/user_list_tile.dart';
+
 class ThirdScreen extends StatelessWidget {
   static const String route = '/third';
 
@@ -10,13 +12,21 @@ class ThirdScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Third Screen'),
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+        ),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/first');
-          },
-          child: const Text('Go to First Screen'),
+      body: ListView.separated(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 18,
+          vertical: 15,
+        ),
+        itemCount: 10,
+        itemBuilder: (context, index) => const UserListTile(),
+        separatorBuilder: (context, index) => const Divider(
+          height: 31,
+          thickness: 0.5,
         ),
       ),
     );

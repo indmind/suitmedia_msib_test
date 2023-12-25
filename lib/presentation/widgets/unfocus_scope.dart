@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 /// text field.
 ///
 /// Reference: https://stackoverflow.com/a/73633201
-class UnfocusScopeWidget extends StatelessWidget {
+class UnfocusScope extends StatelessWidget {
   final Widget child;
 
-  const UnfocusScopeWidget({
+  const UnfocusScope({
     required this.child,
     super.key,
   });

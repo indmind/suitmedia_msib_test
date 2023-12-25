@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/unfocus_scope_widget.dart';
+import '../../widgets/unfocus_scope.dart';
 import '../second_screen/second_screen.dart';
 import '../third_screen/third_screen.dart';
 
@@ -11,7 +11,7 @@ class FirstScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UnfocusScopeWidget(
+    return UnfocusScope(
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(

@@ -5,9 +5,9 @@ import 'text_theme.dart';
 
 final appBarTheme = AppBarTheme(
   elevation: 0,
-  shape: const Border(
+  shape: Border(
     bottom: BorderSide(
-      color: Color(0xFFE2E3E4),
+      color: lightColorScheme.outline,
       width: 0.5,
     ),
   ),
