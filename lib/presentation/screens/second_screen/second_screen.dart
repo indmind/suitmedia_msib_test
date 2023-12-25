@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../controller/user_controller/user_controller.dart';
 import '../third_screen/third_screen.dart';
 
 class SecondScreen extends StatelessWidget {
@@ -32,12 +34,14 @@ class SecondScreen extends StatelessWidget {
               style: textTheme.bodySmall,
             ),
             const SizedBox(height: 8),
-            Text(
-              'John Doe',
-              style: textTheme.bodyMedium!.copyWith(
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-                height: 0.75,
+            Consumer(
+              builder: (context, ref, _) => Text(
+                ref.watch(userControllerProvider) ?? 'Anonymous',
+                style: textTheme.bodyMedium!.copyWith(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                  height: 0.75,
+                ),
               ),
             ),
             Expanded(

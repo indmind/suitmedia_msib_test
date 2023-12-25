@@ -1,28 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'services.dart';
+part of 'user_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$palindromeServiceHash() => r'5d73770f5e8463e66783f85c213189e114804e53';
+String _$userControllerHash() => r'2c1620d1fc194c73e91cb8b03e1b33dcf57e723c';
 
-/// Provider for the [PalindromeService].
+/// Business logic for the user login feature.
 ///
-/// Copied from [palindromeService].
-@ProviderFor(palindromeService)
-final palindromeServiceProvider =
-    AutoDisposeProvider<PalindromeService>.internal(
-  palindromeService,
-  name: r'palindromeServiceProvider',
+/// Copied from [UserController].
+@ProviderFor(UserController)
+final userControllerProvider =
+    NotifierProvider<UserController, String?>.internal(
+  UserController.new,
+  name: r'userControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$palindromeServiceHash,
+      : _$userControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef PalindromeServiceRef = AutoDisposeProviderRef<PalindromeService>;
+typedef _$UserController = Notifier<String?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

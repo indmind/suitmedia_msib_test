@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../controller/palindrome_controller/palindrome_controller.dart';
 import '../../controller/palindrome_controller/palindrome_state.dart';
+import '../../controller/user_controller/user_controller.dart';
 import '../../widgets/dialogs/palindrome_result_dialog.dart';
 import '../../widgets/unfocus_scope.dart';
 import '../second_screen/second_screen.dart';
@@ -99,8 +100,7 @@ class _FirstScreenState extends ConsumerState<FirstScreen> {
                   ),
                   const SizedBox(height: 15),
                   FilledButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, SecondScreen.route),
+                    onPressed: _login,
                     child: const Text('NEXT'),
                   ),
                 ],
@@ -120,6 +120,16 @@ class _FirstScreenState extends ConsumerState<FirstScreen> {
     ref
         .read(palindromeControllerProvider.notifier)
         .checkPalindrome(_palindromeController.text);
+  }
+
+  void _login() {
+    if (!_nameFormKey.currentState!.validate()) {
+      return;
+    }
+
+    ref.read(userControllerProvider.notifier).login(_nameController.text);
+
+    Navigator.pushNamed(context, SecondScreen.route);
   }
 
   @override

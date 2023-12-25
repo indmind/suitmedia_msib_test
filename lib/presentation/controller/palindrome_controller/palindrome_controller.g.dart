@@ -9,7 +9,9 @@ part of 'palindrome_controller.dart';
 String _$palindromeControllerHash() =>
     r'6747d8fe8c4b40e7e795f2c7e812e37966184727';
 
-/// See also [PalindromeController].
+/// Business logic for the palindrome feature.
+///
+/// Copied from [PalindromeController].
 @ProviderFor(PalindromeController)
 final palindromeControllerProvider =
     AutoDisposeNotifierProvider<PalindromeController, PalindromeState>.internal(
