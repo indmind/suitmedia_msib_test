@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../domain/models/user_model.dart';
 import '../../controller/user_controller/user_controller.dart';
 import '../third_screen/third_screen.dart';
 
-class SecondScreen extends StatelessWidget {
+class SecondScreen extends StatefulWidget {
   static const String route = '/second';
 
   const SecondScreen({super.key});
+
+  @override
+  State<SecondScreen> createState() => _SecondScreenState();
+}
+
+class _SecondScreenState extends State<SecondScreen> {
+  UserModel? _selectedUser;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +55,9 @@ class SecondScreen extends StatelessWidget {
             Expanded(
               child: Center(
                 child: Text(
-                  'Selected User Name',
+                  _selectedUser == null
+                      ? 'No user selected'
+                      : '${_selectedUser?.firstName ?? '-'} ${_selectedUser?.lastName ?? '-'}',
                   style: textTheme.headlineSmall!.copyWith(
                     fontWeight: FontWeight.w600,
                     fontSize: 24,
@@ -56,7 +66,18 @@ class SecondScreen extends StatelessWidget {
               ),
             ),
             FilledButton(
-              onPressed: () => Navigator.pushNamed(context, ThirdScreen.route),
+              onPressed: () async {
+                final user = await Navigator.pushNamed(
+                  context,
+                  ThirdScreen.route,
+                ) as UserModel?;
+
+                if (user != null) {
+                  setState(() {
+                    _selectedUser = user;
+                  });
+                }
+              },
               child: const Text('Choose a User'),
             ),
           ],

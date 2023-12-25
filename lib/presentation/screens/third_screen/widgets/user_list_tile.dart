@@ -1,38 +1,57 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../domain/models/user_model.dart';
+
 class UserListTile extends StatelessWidget {
-  const UserListTile({super.key});
+  final UserModel user;
+  final VoidCallback? onTap;
+
+  const UserListTile({
+    super.key,
+    required this.user,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return Row(
-      children: [
-        const CircleAvatar(
-          radius: 25,
-          backgroundColor: Colors.grey,
-        ),
-        const SizedBox(width: 20),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 18),
+        child: Row(
           children: [
-            Text(
-              'Name',
-              style: textTheme.bodyLarge!.copyWith(
-                fontWeight: FontWeight.w600,
+            CircleAvatar(
+              radius: 25,
+              backgroundColor: Colors.grey,
+              foregroundImage: CachedNetworkImageProvider(
+                user.avatar ?? 'https://via.placeholder.com/150',
               ),
             ),
-            const SizedBox(height: 5),
-            Text(
-              'email@email.com',
-              style: textTheme.bodySmall!.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
+            const SizedBox(width: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${user.firstName} ${user.lastName}',
+                  style: textTheme.bodyLarge!.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  user.email ?? '-',
+                  style: textTheme.bodySmall!.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 }

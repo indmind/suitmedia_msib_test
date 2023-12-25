@@ -6,7 +6,7 @@ part of 'services.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$palindromeServiceHash() => r'5d73770f5e8463e66783f85c213189e114804e53';
+String _$palindromeServiceHash() => r'768377a1c01ce4ab75608cbea2097a2133e10de4';
 
 /// Provider for the [PalindromeService].
 ///
@@ -24,5 +24,19 @@ final palindromeServiceProvider =
 );
 
 typedef PalindromeServiceRef = AutoDisposeProviderRef<PalindromeService>;
+String _$userServiceHash() => r'cf25e35bf3d2c5b7728fd90211b871618b5aac62';
+
+/// See also [userService].
+@ProviderFor(userService)
+final userServiceProvider = AutoDisposeProvider<UserService>.internal(
+  userService,
+  name: r'userServiceProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$userServiceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef UserServiceRef = AutoDisposeProviderRef<UserService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
