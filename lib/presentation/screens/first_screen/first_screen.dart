@@ -1,16 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../controller/palindrome_controller/palindrome_controller.dart';
+import '../../controller/palindrome_controller/palindrome_state.dart';
+import '../../widgets/dialogs/palindrome_result_dialog.dart';
 import '../../widgets/unfocus_scope.dart';
 import '../second_screen/second_screen.dart';
-import '../third_screen/third_screen.dart';
 
-class FirstScreen extends StatelessWidget {
+class FirstScreen extends ConsumerStatefulWidget {
   static const String route = '/first';
 
   const FirstScreen({super.key});
 
   @override
+  ConsumerState<FirstScreen> createState() => _FirstScreenState();
+}
+
+class _FirstScreenState extends ConsumerState<FirstScreen> {
+  final GlobalKey<FormState> _nameFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _palindromeFormKey = GlobalKey<FormState>();
+
+  final _nameController = TextEditingController();
+  final _palindromeController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
+    ref.listen<PalindromeState>(
+      palindromeControllerProvider,
+      (_, state) => PalindromeResultDialog.show(
+        context,
+        word: state.word!,
+        isPalindrome: state is ValidPalindromeState,
+      ),
+    );
+
     return UnfocusScope(
       child: Scaffold(
         extendBodyBehindAppBar: true,
@@ -38,23 +61,46 @@ class FirstScreen extends StatelessWidget {
                     height: 116,
                   ),
                   const SizedBox(height: 58),
-                  TextFormField(
-                    decoration: const InputDecoration(hintText: 'Name'),
+                  Form(
+                    key: _nameFormKey,
+                    child: TextFormField(
+                      controller: _nameController,
+                      decoration: const InputDecoration(hintText: 'Name'),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your name';
+                        }
+
+                        return null;
+                      },
+                    ),
                   ),
                   const SizedBox(height: 22),
-                  TextFormField(
-                    decoration: const InputDecoration(hintText: 'Palindrome'),
+                  Form(
+                    key: _palindromeFormKey,
+                    child: TextFormField(
+                      controller: _palindromeController,
+                      decoration: const InputDecoration(hintText: 'Palindrome'),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a word';
+                        }
+
+                        return null;
+                      },
+                    ),
                   ),
                   const SizedBox(height: 45),
                   FilledButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, SecondScreen.route),
+                    onPressed: _checkForPalindrome,
                     child: const Text('CHECK'),
                   ),
                   const SizedBox(height: 15),
                   FilledButton(
                     onPressed: () =>
-                        Navigator.pushNamed(context, ThirdScreen.route),
+                        Navigator.pushNamed(context, SecondScreen.route),
                     child: const Text('NEXT'),
                   ),
                 ],
@@ -64,5 +110,23 @@ class FirstScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _checkForPalindrome() {
+    if (!_palindromeFormKey.currentState!.validate()) {
+      return;
+    }
+
+    ref
+        .read(palindromeControllerProvider.notifier)
+        .checkPalindrome(_palindromeController.text);
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _palindromeController.dispose();
+
+    super.dispose();
   }
 }
