@@ -6,7 +6,6 @@ import 'user_service.dart';
 
 part 'services.g.dart';
 
-/// Provider for the [PalindromeService].
 @riverpod
 PalindromeService palindromeService(PalindromeServiceRef ref) =>
     PalindromeService();
