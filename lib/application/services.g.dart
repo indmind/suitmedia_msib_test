@@ -8,9 +8,7 @@ part of 'services.dart';
 
 String _$palindromeServiceHash() => r'768377a1c01ce4ab75608cbea2097a2133e10de4';
 
-/// Provider for the [PalindromeService].
-///
-/// Copied from [palindromeService].
+/// See also [palindromeService].
 @ProviderFor(palindromeService)
 final palindromeServiceProvider =
     AutoDisposeProvider<PalindromeService>.internal(
