@@ -33,6 +33,20 @@ To run the app, use this command
 flutter run
 ```
 
+## Testing
+
+To run the unit test, use this command
+
+```sh
+flutter test
+```
+
+To run the integration test, use this command
+
+```sh
+flutter test integration_test
+```
+
 ## Convention
 
 This app uses [Effective Dart](https://dart.dev/guides/language/effective-dart) as the coding convention.
